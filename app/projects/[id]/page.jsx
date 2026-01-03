@@ -57,8 +57,28 @@ export default async function ProjectDetailPage({ params }) {
 
     return (
         <div className="bg-gray-50 min-h-screen">
-            {/* Hero Image */}
-            {project.cover_image_url && (
+            {/* Hero Section with Background Image */}
+            {project.background_image_url ? (
+                <div className="relative w-full h-96">
+                    <Image
+                        src={project.background_image_url}
+                        alt={project.title}
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70" />
+                    {/* Title on background */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <Container>
+                            <h1 className="text-4xl lg:text-6xl font-bold text-white text-center">
+                                {project.title}
+                            </h1>
+                        </Container>
+                    </div>
+                </div>
+            ) : project.cover_image_url ? (
                 <div className="relative w-full h-96 bg-gray-200">
                     <Image
                         src={project.cover_image_url}
@@ -68,7 +88,7 @@ export default async function ProjectDetailPage({ params }) {
                         priority
                     />
                 </div>
-            )}
+            ) : null}
 
             {/* Content */}
             <Container className="py-12">
@@ -129,6 +149,25 @@ export default async function ProjectDetailPage({ params }) {
                             </div>
                         )}
                     </div>
+
+                    {/* Image Gallery */}
+                    {project.images_urls && project.images_urls.length > 0 && (
+                        <div className="bg-white rounded-lg shadow-md p-8">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Project Gallery</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {project.images_urls.map((imageUrl, index) => (
+                                    <div key={index} className="relative h-64 rounded-lg overflow-hidden">
+                                        <Image
+                                            src={imageUrl}
+                                            alt={`${project.title} - Image ${index + 1}`}
+                                            fill
+                                            className="object-cover hover:scale-105 transition-transform duration-300"
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </Container>
         </div>

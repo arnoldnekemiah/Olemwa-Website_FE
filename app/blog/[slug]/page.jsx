@@ -143,6 +143,25 @@ export default async function BlogPostPage({ params }) {
                                 {post.content}
                             </ReactMarkdown>
                         </div>
+
+                        {/* Image Gallery */}
+                        {post.images_urls && post.images_urls.length > 0 && (
+                            <div className="mt-12 pt-8 border-t border-gray-200">
+                                <h2 className="text-2xl font-bold text-gray-900 mb-6">Gallery</h2>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    {post.images_urls.map((imageUrl, index) => (
+                                        <div key={index} className="relative h-64 rounded-lg overflow-hidden">
+                                            <Image
+                                                src={imageUrl}
+                                                alt={`${post.title} - Image ${index + 1}`}
+                                                fill
+                                                className="object-cover hover:scale-105 transition-transform duration-300"
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </Container>
             </article>

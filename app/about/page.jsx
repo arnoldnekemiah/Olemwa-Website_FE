@@ -86,10 +86,25 @@ export default async function AboutPage() {
                             <h2 className="text-3xl font-bold text-gray-900 mb-8">Our Leadership</h2>
                             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 {leadership.map((leader) => (
-                                    <Card key={leader.id}>
+                                    <Card key={leader.id} className="overflow-hidden">
+                                        {/* Background Image */}
+                                        {leader.background_image_url && (
+                                            <div className="relative h-32">
+                                                <Image
+                                                    src={leader.background_image_url}
+                                                    alt={`${leader.name} background`}
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-b from-indigo-600/70 to-purple-600/70" />
+                                            </div>
+                                        )}
+
                                         <CardBody className="text-center">
+                                            {/* Profile Photo - overlaps background if present */}
                                             {leader.photo_url && (
-                                                <div className="relative w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden ring-4 ring-indigo-100">
+                                                <div className={`relative w-40 h-40 mx-auto rounded-full overflow-hidden ring-4 ring-white shadow-lg ${leader.background_image_url ? '-mt-20 mb-4' : 'mb-4'
+                                                    }`}>
                                                     <Image
                                                         src={leader.photo_url}
                                                         alt={leader.name}
