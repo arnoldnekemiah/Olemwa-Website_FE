@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import api from '@/lib/api';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 import Card, { CardBody } from '@/components/ui/Card';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaCheckCircle } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaCheckCircle, FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
@@ -15,9 +15,27 @@ export default function ContactPage() {
         subject: '',
         message: '',
     });
+    const [contactInfo, setContactInfo] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [pageLoading, setPageLoading] = useState(true);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState('');
+
+    // Fetch contact information from CMS
+    useEffect(() => {
+        const fetchContactInfo = async () => {
+            try {
+                const response = await api.contact.getInfo();
+                setContactInfo(response.data);
+            } catch (err) {
+                console.error('Error fetching contact info:', err);
+            } finally {
+                setPageLoading(false);
+            }
+        };
+
+        fetchContactInfo();
+    }, []);
 
     const handleChange = (e) => {
         setFormData({
@@ -42,6 +60,14 @@ export default function ContactPage() {
             setLoading(false);
         }
     };
+
+    if (pageLoading) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <LoadingSpinner size="lg" />
+            </div>
+        );
+    }
 
     return (
         <div className="bg-white-warm min-h-screen">
@@ -111,7 +137,7 @@ export default function ContactPage() {
                                         value={formData.email}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent outline-none transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold outline-none transition-all"
                                     />
                                 </div>
 
@@ -126,7 +152,7 @@ export default function ContactPage() {
                                         value={formData.subject}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent outline-none transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold outline-none transition-all"
                                     />
                                 </div>
 
@@ -141,7 +167,7 @@ export default function ContactPage() {
                                         onChange={handleChange}
                                         required
                                         rows={6}
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent outline-none transition-all resize-none"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold outline-none transition-all resize-none"
                                     />
                                 </div>
 
@@ -158,69 +184,110 @@ export default function ContactPage() {
                             </form>
                         </div>
 
-                        {/* Contact Information */}
+                        {/* Contact Information - CMS Driven */}
                         <div>
                             <h2 className="text-3xl font-bold text-gray-900 mb-6">Contact Information</h2>
 
                             <div className="space-y-6">
-                                <Card>
-                                    <CardBody>
-                                        <div className="flex items-start space-x-4">
-                                            <div className="flex-shrink-0 w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center">
-                                                <FaEnvelope className="text-gold" size={20} />
+                                {/* Email */}
+                                {contactInfo?.email && (
+                                    <Card>
+                                        <CardBody>
+                                            <div className="flex items-start space-x-4">
+                                                <div className="flex-shrink-0 w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center">
+                                                    <FaEnvelope className="text-gold" size={20} />
+                                                </div>
+                                                <div>
+                                                    <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
+                                                    <a href={`mailto:${contactInfo.email}`} className="text-gold hover:text-gold-dark">
+                                                        {contactInfo.email}
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                                                <a href="mailto:info@chessclub.com" className="text-gold hover:text-gold-dark">
-                                                    info@chessclub.com
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </CardBody>
-                                </Card>
+                                        </CardBody>
+                                    </Card>
+                                )}
 
-                                <Card>
-                                    <CardBody>
-                                        <div className="flex items-start space-x-4">
-                                            <div className="flex-shrink-0 w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center">
-                                                <FaPhone className="text-gold" size={20} />
+                                {/* Phone */}
+                                {contactInfo?.phone && (
+                                    <Card>
+                                        <CardBody>
+                                            <div className="flex items-start space-x-4">
+                                                <div className="flex-shrink-0 w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center">
+                                                    <FaPhone className="text-gold" size={20} />
+                                                </div>
+                                                <div>
+                                                    <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
+                                                    <a href={`tel:${contactInfo.phone}`} className="text-gold hover:text-gold-dark">
+                                                        {contactInfo.phone}
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
-                                                <a href="tel:+1234567890" className="text-gold hover:text-gold-dark">
-                                                    +1 (234) 567-890
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </CardBody>
-                                </Card>
+                                        </CardBody>
+                                    </Card>
+                                )}
 
-                                <Card>
-                                    <CardBody>
-                                        <div className="flex items-start space-x-4">
-                                            <div className="flex-shrink-0 w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center">
-                                                <FaMapMarkerAlt className="text-gold" size={20} />
+                                {/* Location */}
+                                {contactInfo?.location && (
+                                    <Card>
+                                        <CardBody>
+                                            <div className="flex items-start space-x-4">
+                                                <div className="flex-shrink-0 w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center">
+                                                    <FaMapMarkerAlt className="text-gold" size={20} />
+                                                </div>
+                                                <div>
+                                                    <h3 className="font-semibold text-gray-900 mb-1">Address</h3>
+                                                    <p className="text-gray-600 whitespace-pre-line">
+                                                        {contactInfo.location}
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h3 className="font-semibold text-gray-900 mb-1">Address</h3>
-                                                <p className="text-gray-600">
-                                                    123 Chess Avenue<br />
-                                                    City, State 12345
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </CardBody>
-                                </Card>
+                                        </CardBody>
+                                    </Card>
+                                )}
                             </div>
 
-                            <div className="mt-8 bg-gold-light rounded-lg p-6 border-2 border-gold/30">
-                                <h3 className="font-semibold text-gray-900 mb-2">Office Hours</h3>
-                                <p className="text-gray-600">
-                                    Monday - Friday: 9:00 AM - 6:00 PM<br />
-                                    Saturday: 10:00 AM - 4:00 PM<br />
-                                    Sunday: Closed
-                                </p>
-                            </div>
+                            {/* Social Media Links */}
+                            {(contactInfo?.facebook_url || contactInfo?.twitter_url || contactInfo?.instagram_url) && (
+                                <div className="mt-8 bg-gold-light rounded-lg p-6 border-2 border-gold/30">
+                                    <h3 className="font-semibold text-gray-900 mb-4">Follow Us</h3>
+                                    <div className="flex space-x-4">
+                                        {contactInfo.facebook_url && (
+                                            <a
+                                                href={contactInfo.facebook_url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="w-10 h-10 bg-gold rounded-full flex items-center justify-center text-white hover:bg-gold-dark transition-colors"
+                                                aria-label="Facebook"
+                                            >
+                                                <FaFacebook size={20} />
+                                            </a>
+                                        )}
+                                        {contactInfo.twitter_url && (
+                                            <a
+                                                href={contactInfo.twitter_url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="w-10 h-10 bg-gold rounded-full flex items-center justify-center text-white hover:bg-gold-dark transition-colors"
+                                                aria-label="Twitter"
+                                            >
+                                                <FaTwitter size={20} />
+                                            </a>
+                                        )}
+                                        {contactInfo.instagram_url && (
+                                            <a
+                                                href={contactInfo.instagram_url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="w-10 h-10 bg-gold rounded-full flex items-center justify-center text-white hover:bg-gold-dark transition-colors"
+                                                aria-label="Instagram"
+                                            >
+                                                <FaInstagram size={20} />
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </Container>

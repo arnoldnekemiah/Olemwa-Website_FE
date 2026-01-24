@@ -22,9 +22,8 @@ const nextConfig = {
                 hostname: '**',
             },
         ],
-        // Custom loader for development to handle localhost images
-        loader: process.env.NODE_ENV === 'development' ? 'custom' : 'default',
-        loaderFile: process.env.NODE_ENV === 'development' ? './lib/imageLoader.js' : undefined,
+        // Disable optimization for localhost in development to bypass private IP check
+        unoptimized: process.env.NODE_ENV === 'development',
     },
     turbopack: {
         root: import.meta.dirname,

@@ -73,6 +73,7 @@ export default async function BlogPostPage({ params }) {
         image: post.cover_image_url,
         datePublished: post.published_at,
         dateModified: post.updated_at,
+        author: post.author?.name,
     });
 
     return (
@@ -125,7 +126,7 @@ export default async function BlogPostPage({ params }) {
                             {post.author && (
                                 <div className="flex items-center">
                                     <FaUser className="mr-2" />
-                                    <span>{post.author}</span>
+                                    <span>By {post.author.name}</span>
                                 </div>
                             )}
                         </div>
