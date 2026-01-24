@@ -44,14 +44,18 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="bg-gray-50 min-h-screen">
+        <div className="bg-white-warm min-h-screen">
             {/* Hero Section */}
-            <section className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-16">
+            <section className="bg-black-charcoal text-white py-20 border-b-2 border-gold">
                 <Container>
-                    <h1 className="text-4xl lg:text-5xl font-bold mb-4">Contact Us</h1>
-                    <p className="text-xl text-indigo-100">
-                        Get in touch with us - we'd love to hear from you
-                    </p>
+                    <div className="max-w-3xl mx-auto text-center">
+                        <h1 className="text-5xl lg:text-6xl font-bold mb-6 animate-fadeInUp">
+                            Contact <span className="text-gold">Us</span>
+                        </h1>
+                        <p className="text-xl text-gray-300 animate-fadeInUp delay-200">
+                            Get in touch with us - we'd love to hear from you
+                        </p>
+                    </div>
                 </Container>
             </section>
 
@@ -92,7 +96,7 @@ export default function ContactPage() {
                                         value={formData.name}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent outline-none transition-all"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold outline-none transition-all"
                                     />
                                 </div>
 
@@ -162,12 +166,12 @@ export default function ContactPage() {
                                 <Card>
                                     <CardBody>
                                         <div className="flex items-start space-x-4">
-                                            <div className="flex-shrink-0 w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
-                                                <FaEnvelope className="text-indigo-600" size={20} />
+                                            <div className="flex-shrink-0 w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center">
+                                                <FaEnvelope className="text-gold" size={20} />
                                             </div>
                                             <div>
                                                 <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                                                <a href="mailto:info@chessclub.com" className="text-indigo-600 hover:text-indigo-700">
+                                                <a href="mailto:info@chessclub.com" className="text-gold hover:text-gold-dark">
                                                     info@chessclub.com
                                                 </a>
                                             </div>
@@ -178,12 +182,12 @@ export default function ContactPage() {
                                 <Card>
                                     <CardBody>
                                         <div className="flex items-start space-x-4">
-                                            <div className="flex-shrink-0 w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
-                                                <FaPhone className="text-indigo-600" size={20} />
+                                            <div className="flex-shrink-0 w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center">
+                                                <FaPhone className="text-gold" size={20} />
                                             </div>
                                             <div>
                                                 <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
-                                                <a href="tel:+1234567890" className="text-indigo-600 hover:text-indigo-700">
+                                                <a href="tel:+1234567890" className="text-gold hover:text-gold-dark">
                                                     +1 (234) 567-890
                                                 </a>
                                             </div>
@@ -194,8 +198,8 @@ export default function ContactPage() {
                                 <Card>
                                     <CardBody>
                                         <div className="flex items-start space-x-4">
-                                            <div className="flex-shrink-0 w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
-                                                <FaMapMarkerAlt className="text-indigo-600" size={20} />
+                                            <div className="flex-shrink-0 w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center">
+                                                <FaMapMarkerAlt className="text-gold" size={20} />
                                             </div>
                                             <div>
                                                 <h3 className="font-semibold text-gray-900 mb-1">Address</h3>
@@ -209,8 +213,7 @@ export default function ContactPage() {
                                 </Card>
                             </div>
 
-                            {/* Optional: Add office hours or additional info */}
-                            <div className="mt-8 bg-indigo-50 rounded-lg p-6">
+                            <div className="mt-8 bg-gold-light rounded-lg p-6 border-2 border-gold/30">
                                 <h3 className="font-semibold text-gray-900 mb-2">Office Hours</h3>
                                 <p className="text-gray-600">
                                     Monday - Friday: 9:00 AM - 6:00 PM<br />

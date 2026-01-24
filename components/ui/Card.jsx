@@ -1,8 +1,15 @@
-export default function Card({ children, className = '', hover = false }) {
+export default function Card({ children, className = '', hover = false, premium = false }) {
+    const baseClasses = 'bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300';
+    const hoverClasses = hover
+        ? 'hover:shadow-2xl hover:scale-105 hover:border-gold cursor-pointer'
+        : '';
+    const premiumClasses = premium
+        ? 'border-2 border-gold relative before:absolute before:inset-0 before:animate-shimmer'
+        : '';
+
     return (
         <div
-            className={`bg-white rounded-lg shadow-md overflow-hidden ${hover ? 'hover:shadow-xl transition-shadow duration-300' : ''
-                } ${className}`}
+            className={`${baseClasses} ${hoverClasses} ${premiumClasses} ${className}`}
         >
             {children}
         </div>

@@ -32,10 +32,10 @@ export default function Footer() {
                     <div className="col-span-1 md:col-span-2">
                         <div className="flex items-center space-x-2 mb-4">
                             <FaChessKnight className="text-3xl text-indigo-400" />
-                            <span className="text-xl font-bold text-white">Olemwa Chess Club</span>
+                            <span className="text-xl font-bold text-white">Olemwa Sports Club</span>
                         </div>
                         <p className="text-gray-400 mb-4">
-                            Promoting chess excellence and building a strong community of players.
+                            Promoting sports excellence and building a strong community of athletes.
                         </p>
                         {/* Social Links */}
                         <div className="flex space-x-4">
@@ -92,7 +92,7 @@ export default function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-                    <p>&copy; {currentYear} Olemwa Chess Club. All rights reserved.</p>
+                    <p>&copy; {currentYear} Olemwa Sports Club. All rights reserved.</p>
                 </div>
             </div>
         </footer>

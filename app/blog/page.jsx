@@ -8,7 +8,7 @@ import { generateMetadata as generateMeta } from '@/lib/seo';
 
 export const metadata = generateMeta({
     title: 'Blog',
-    description: 'Read the latest news and updates from our Olemwa Chess Club.',
+    description: 'Read the latest news and updates from our Olemwa Sports Club.',
 });
 
 async function getBlogPosts(page = 1) {
@@ -27,14 +27,18 @@ export default async function BlogPage(props) {
     const posts = await getBlogPosts(page);
 
     return (
-        <div className="bg-gray-50 min-h-screen">
+        <div className="bg-white-warm min-h-screen">
             {/* Hero Section */}
-            <section className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-16">
+            <section className="bg-black-charcoal text-white py-20 border-b-2 border-gold">
                 <Container>
-                    <h1 className="text-4xl lg:text-5xl font-bold mb-4">Blog</h1>
-                    <p className="text-xl text-indigo-100">
-                        Latest news, updates, and stories from our chess community
-                    </p>
+                    <div className="max-w-3xl mx-auto text-center">
+                        <h1 className="text-5xl lg:text-6xl font-bold mb-6 animate-fadeInUp">
+                            Sports Club <span className="text-gold">Blog</span>
+                        </h1>
+                        <p className="text-xl text-gray-300 animate-fadeInUp delay-200">
+                            Latest news, updates, and stories from our sports community
+                        </p>
+                    </div>
                 </Container>
             </section>
 
@@ -62,9 +66,9 @@ export default async function BlogPage(props) {
                                                 </div>
                                             )}
                                             <CardBody className="flex-1 flex flex-col">
-                                                <h2 className="font-bold text-xl mb-3 line-clamp-2">{post.title}</h2>
+                                                <h2 className="font-bold text-xl mb-3 line-clamp-2 text-black-charcoal">{post.title}</h2>
                                                 <p className="text-gray-600 mb-4 line-clamp-3 flex-1">{post.excerpt}</p>
-                                                <div className="flex items-center text-sm text-gray-500 pt-4 border-t border-gray-200">
+                                                <div className="flex items-center text-sm text-gold pt-4 border-t border-gray-200">
                                                     <FaCalendar className="mr-2" />
                                                     {new Date(post.published_at).toLocaleDateString('en-US', {
                                                         year: 'numeric',
