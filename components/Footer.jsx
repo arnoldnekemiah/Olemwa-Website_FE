@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaChessKnight } from 'react-icons/fa';
+import Image from 'next/image';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -30,8 +31,15 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-2">
-                        <div className="flex items-center space-x-2 mb-4">
-                            <FaChessKnight className="text-3xl text-indigo-400" />
+                        <div className="flex items-center space-x-3 mb-4">
+                            <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-gold">
+                                <Image
+                                    src="/logo.jpg"
+                                    alt="Olemwa Sports Club Logo"
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
                             <span className="text-xl font-bold text-white">Olemwa Sports Club</span>
                         </div>
                         <p className="text-gray-400 mb-4">

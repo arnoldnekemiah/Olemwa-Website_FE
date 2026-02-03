@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { FaBars, FaTimes, FaChessKnight } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -38,9 +39,16 @@ export default function Header() {
                     {/* Logo */}
                     <Link
                         href="/"
-                        className="flex items-center space-x-2 text-xl font-bold text-white group"
+                        className="flex items-center space-x-3 text-xl font-bold text-white group"
                     >
-                        <FaChessKnight className="text-3xl text-gold transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
+                        <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-gold transition-transform duration-300 group-hover:scale-110">
+                            <Image
+                                src="/logo.jpg"
+                                alt="Olemwa Sports Club Logo"
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
                         <span className="hidden sm:inline">
                             Olemwa <span className="text-gold">Sports Club</span>
                         </span>

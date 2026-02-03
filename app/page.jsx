@@ -5,6 +5,7 @@ import Container from '@/components/ui/Container';
 import Card, { CardBody } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
+import HeroCarousel from '@/components/ui/HeroCarousel';
 import { FaChessKnight, FaArrowRight, FaCalendar, FaTrophy, FaCrown } from 'react-icons/fa';
 
 async function getHomeData() {
@@ -35,18 +36,8 @@ export default async function HomePage() {
         <div>
             {/* Hero Section with Background Image */}
             <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden">
-                {/* Background Image */}
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src="/chess-hero-bg.png"
-                        alt="Chess board"
-                        fill
-                        className="object-cover"
-                        priority
-                    />
-                    {/* Dark Overlay for text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/90" />
-                </div>
+                {/* Image Carousel */}
+                <HeroCarousel />
 
                 {/* Hero Content */}
                 <Container className="relative z-10 py-20 lg:py-32">

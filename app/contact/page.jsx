@@ -166,7 +166,7 @@ export default function ContactPage() {
                                         value={formData.message}
                                         onChange={handleChange}
                                         required
-                                        rows={6}
+                                        rows={3}
                                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold outline-none transition-all resize-none"
                                     />
                                 </div>
