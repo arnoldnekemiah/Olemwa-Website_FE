@@ -59,9 +59,17 @@
     color: var(--color-gold-dark);
   }
 
+  .text-gold-light {
+    color: var(--color-gold-light);
+  }
+
   /* Background Utilities */
   .bg-black-charcoal {
     background-color: var(--color-black-charcoal);
+  }
+
+  .bg-black-soft {
+    background-color: var(--color-black-soft);
   }
 
   .bg-gold {
@@ -72,14 +80,44 @@
     background-color: var(--color-gold-light);
   }
 
+  .bg-gold-pale {
+    background-color: var(--color-gold-pale);
+  }
+
+  .bg-white-warm {
+    background-color: var(--color-white-warm);
+  }
+
   /* Border Utilities */
   .border-gold {
     border-color: var(--color-gold-rich);
   }
 
+  /* Ring Utilities */
+  .ring-gold {
+    --tw-ring-color: var(--color-gold-rich);
+  }
+
   /* Gold Gradient */
   .bg-gold-gradient {
     background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold-rich) 50%, var(--color-gold-metallic) 100%);
+  }
+
+  /* Text Gradient */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold-rich) 50%, var(--color-gold-metallic) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Hover Shadow */
+  .hover-gold-shadow {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .hover-gold-shadow:hover {
+    box-shadow: 0 10px 40px -10px rgba(212, 175, 55, 0.4);
   }
 }
 
